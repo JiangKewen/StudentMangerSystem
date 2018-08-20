@@ -10,12 +10,22 @@ const whiteList = ["/login"] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (whiteList.indexOf(to.path) !== -1) { //如果是登录页面路径,就直接next()
+    // console.log('login')
     next();
   } else {
-    next();
+    let user_name = localStorage.getItem("user_name");
+    if(user_name != null) {
+      // console.log('user_name')
+      next();
+    } else {
+      // console.log('no user_name')
+      next("/login")
+      NProgress.done()
+    }
   }  
 })
 
 router.afterEach(() => {
+  // console.log('afterEach')
   NProgress.done()
 })

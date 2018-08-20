@@ -6,7 +6,7 @@
     <div class="login_box">
       <div class="copu">
         <el-input placeholder="请输入用户名" v-model="name" autofocus class="animated bounceInLeft"></el-input>
-        <el-input placeholder="请输入密码" v-model="pass" class="animated bounceInLeft"></el-input>
+        <el-input placeholder="请输入密码" type="password" v-model="pass" class="animated bounceInLeft"></el-input>
         <a class="login_btn animated bounceInLeft" @click="put_in">登录</a>
         <el-checkbox v-model="checked" class="animated tada">记住密码</el-checkbox>
       </div>
@@ -47,8 +47,13 @@ export default {
     put_in() {
       // 先做前端验证，再做后台验证，最后路由跳转
       let self = this;
-      self.$message.success("登录成功")
-      self.$router.push({ path: '/' });
+      if(self.name && self.pass) {
+        self.$message.success("登录成功")
+        self.$router.push({ path: '/' });
+        localStorage.setItem("user_name",self.name);
+      } else {
+        // console.log('no input')
+      }
     },
   },
   mounted() {
