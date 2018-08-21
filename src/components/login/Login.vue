@@ -16,6 +16,7 @@
 
 <script>
 import 'animate.css/animate.min.css';
+import { login } from "../../api/api.js"
 export default {
   data() {
     return {
@@ -48,11 +49,24 @@ export default {
       // 先做前端验证，再做后台验证，最后路由跳转
       let self = this;
       if(self.name && self.pass) {
-        self.$message.success("登录成功")
-        self.$router.push({ path: '/' });
-        localStorage.setItem("user_name",self.name);
+        console.log(login,'type')
+        login({
+          "admin.username": self.name,
+          "admin.password": self.pass,
+        }).then(res => {
+          console.log(res, "res");
+          if(res.state == true) {
+            localStorage.setItem("user_name",self.name);
+            self.$router.push({ path: '/' });
+            self.$message.success(res.msg)
+          } else {
+            self.$message.info(res.msg)
+          }
+        }).catch(err => {
+          console.log(err, "err");
+        });
       } else {
-        // console.log('no input')
+        self.$message.info("请输入用户名及密码！")
       }
     },
   },

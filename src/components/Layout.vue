@@ -82,6 +82,7 @@ export default {
     // }
     quit() {
       console.log('%cquit','color:red;');
+      localStorage.removeItem("user_name");
       this.$router.replace('/login');
     }
   },

@@ -14,11 +14,12 @@ router.beforeEach((to, from, next) => {
     next();
   } else {
     let user_name = localStorage.getItem("user_name");
+    console.log(user_name,'user_name')
     if(user_name != null) {
       // console.log('user_name')
       next();
     } else {
-      // console.log('no user_name')
+      console.log('no user_name')
       next("/login")
       NProgress.done()
     }
