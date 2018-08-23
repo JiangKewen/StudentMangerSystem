@@ -55,7 +55,7 @@ export default {
           "admin.password": self.pass,
         }).then(res => {
           console.log(res, "res");
-          if(res.state == true) {
+          if(res.state == 1) {
             localStorage.setItem("user_name",self.name);
             self.$router.push({ path: '/' });
             self.$message.success(res.msg)
