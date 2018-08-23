@@ -60,13 +60,13 @@ export default {
             self.$router.push({ path: '/' });
             self.$message.success(res.msg)
           } else {
-            self.$message.info(res.msg)
+            self.$message.error(res.msg)
           }
         }).catch(err => {
           console.log(err, "err");
         });
       } else {
-        self.$message.info("请输入用户名及密码！")
+        self.$message.error("请输入用户名及密码！");
       }
     },
   },

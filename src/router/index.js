@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout from '@/components/Layout'
+import Layout from '@/components/common/Layout'
 
 import Login from "@/components/login/Login"
 
@@ -13,6 +13,15 @@ export default new Router({
     y: 0
   }),
   routes: [
+    {
+      path: "*",
+      redirect: "/404"
+    },
+    {
+      path: "/404",
+      name: "NotFound",
+      component: () => import("@/components/common/NotFound.vue")
+    },
     {
       path: '/',
       name: 'Layout',
