@@ -25,3 +25,6 @@
     学习在config下dev.env.js和prod.env.js中添加变量 process.env.XXX，
     学习在config下index.js中添加proxyTable代理
 ---
+### 2018年8月23日15:16:44
+    添加404页面，
+    后台已经能将打包完的页面正确显示

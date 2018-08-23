@@ -23,19 +23,6 @@ export default {
       name: '', // 用户名
       pass: '', // 密码
       checked: false, // 记住密码
-      // neon-effect => 这个把背景色换掉还是挺合适的
-      // options: {
-      //   len: 20, //The unilateral length of the pentagon
-      //   count: 50, //How many lines overlap
-      //   rate: 20, //rate the smaller fast
-      //   dieChance: 0.05, //The chance to redraw a single painting failure.
-      //   sparkChance: 0.1, //[0,1] The larger the figure, the larger the pentagon.
-      //   sparkDist: 10, //Flash point distance.
-      //   sparkSize: 2,//Flash point size.
-      //   contentLight: 60, // [0,100] Brightness of color block
-      //   shadowToTimePropMult: 6, //The shadow size of the inner ring of the pentagon.
-      //   bgColorArr: [0, 0, 0] //Background color array
-      // },
       options: {
         color: '#2a2a7591', //Bubble color
         radius: 15, //Bubble radius
