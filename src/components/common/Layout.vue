@@ -2,8 +2,8 @@
   <div id="layout">
     <div class="top">
       <div class="top_left">
-        <div class="main_tit" @click="$router.push('/')">学生信息后台管理</div>
-        <el-input 
+        <div class="main_tit" @click="$router.push('/')">首页信息后台管理</div>
+        <el-input
           placeholder="请输入用户名"
           v-model="search"
           class="search"
@@ -33,31 +33,26 @@
     <div class="bodys">
       <div class="left">
         <el-menu
-          background-color="#333"
+          background-color="#393d49"
           text-color="#fff"
           active-text-color="#ffd04b"
-          :router="true">
-          <el-submenu index="zidian">
-            <template slot="title">
-              <i class="el-icon-menu"></i>
-              <span>系统管理</span>
+          :router="true" v-for="(nav, index) in navs" :key="index">
+            <template>
+              <el-submenu :index="index.toString()" v-if="nav.spread">
+                <template slot="title">
+                  <i v-if="nav.icon" class="fa" :class="nav.icon"></i>
+                  <span slot="title" class="nav-next">{{nav.title}}</span>
+                </template>
+                    <el-menu-item v-if="subNav.children && nav.children.length>0"
+                                :index="subNav.href"
+                                v-for="(subNav,subIndex) in nav.children"
+                                :key="subIndex"
+                                class="subNav_child">
+                      <i v-if="subNav.icon" class="fa" :class="subNav.icon" ></i>
+                      <span slot="title" class="subNav-next">{{subNav.title}}</span>
+                    </el-menu-item>
+              </el-submenu>
             </template>
-            <el-menu-item-group>
-              <el-menu-item index="zidian"><i class="el-icon-view"></i>字典管理</el-menu-item>
-              <el-menu-item index="mokuai"><i class="el-icon-news"></i>模块管理</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-          <el-submenu index="xuesheng">
-            <template slot="title">
-              <i class="el-icon-share"></i>
-              <span>业务管理</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="xuesheng"><i class="el-icon-edit-outline"></i>学生信息管理</el-menu-item>
-              <el-menu-item index="kecheng"><i class="el-icon-edit"></i>课程管理</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-
         </el-menu>
       </div>
       <div class="right">
@@ -68,13 +63,22 @@
 </template>
 
 <script>
+import { navs_tree } from "../../api/api.js"
 export default {
   data() {
     return {
       search: '',
       // currentRoute: this.$router.history.current.fullPath,
+      navs:[],
     }
-  },
+    },
+    created: function() {
+      navs_tree({
+        "pid":''
+      }).then(res => {
+        this.navs = res
+      })
+    },
   methods: {
     // router_change() {
     //   console.log(this.currentRoute,'route');
@@ -144,7 +148,7 @@ export default {
   overflow: hidden;
   position: relative;
   .left {
-    width: 200px;
+    width: 201px;
     height: 100%;
     background: #393D49;
     display: inline-block;
@@ -161,5 +165,10 @@ export default {
     right: 0;
     box-sizing: border-box;
   }
+}
+.fa{
+  color:#fff;
+  margin-right: 5px;
+  margin-top: 2px;
 }
 </style>

@@ -14,7 +14,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         // target: 'http://119.29.146.163',
-        target: 'http://localhost:3000',
+        target: 'http://localhost',
         // 解决跨域问题
         changeOrigin: true,
         // 路径重写

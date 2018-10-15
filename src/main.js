@@ -7,6 +7,8 @@ import router from './router'
 import ElementUI from 'element-ui'; // element组件
 import 'element-ui/lib/theme-chalk/index.css';
 
+import 'font-awesome/css/font-awesome.css'//font-awesome
+
 import "@/assets/styles/common.css" // 全局样式
 require('animate.css'); // 引入css动画库
 

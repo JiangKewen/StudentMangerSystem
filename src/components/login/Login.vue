@@ -2,7 +2,7 @@
   <div id="login">
     <bubbles-effect :options="options" style="my_canvas"></bubbles-effect>
     <div class="top"></div>
-    <div class="top_txt animated bounceInUp">欢迎使用学生信息管理系统</div>
+    <div class="top_txt animated bounceInUp">Welcome Login</div>
     <div class="login_box">
       <div class="copu">
         <el-input placeholder="请输入用户名" v-model="name" autofocus class="animated bounceInLeft"></el-input>
@@ -11,6 +11,7 @@
         <el-checkbox v-model="checked" class="animated tada">记住密码</el-checkbox>
       </div>
     </div>
+    <div class="settings"><el-button type="text" icon="el-icon-setting"></el-button></div>
   </div>
 </template>
 
@@ -38,11 +39,11 @@ export default {
       if(self.name && self.pass) {
         console.log(login,'type')
         login({
-          "admin.username": self.name,
-          "admin.password": self.pass,
+          "username": self.name,
+          "password": self.pass
         }).then(res => {
           console.log(res, "res");
-          if(res.state == 1) {
+          if(res.state == 2) {
             localStorage.setItem("user_name",self.name);
             self.$router.push({ path: '/' });
             self.$message.success(res.msg)
@@ -172,5 +173,14 @@ export default {
 }
 #login .el-checkbox {
   color: white;
+}
+.settings{
+    color: white;
+    position: fixed;
+    top: 70px;
+    right: 60px;
+}
+.el-button i {
+  font-size: 25px;
 }
 </style>
