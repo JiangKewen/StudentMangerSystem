@@ -100,6 +100,7 @@ import { navs_page } from "../../api/api.js"
 import { navs_detail } from "../../api/api.js"
 import { navs_save } from "../../api/api.js"
 import { navs_delete } from "../../api/api.js"
+import { navs_tree } from "../../api/api.js"
 export default {
   name: "MoKuai",
   data() {
@@ -173,7 +174,6 @@ export default {
         "navs":navs
       }).then(res => {
         // this.modeData = res
-        console.log(res)
         this.modeData = res.list
         this.total = res.total
         this.currentPage = res.pageNum
@@ -193,6 +193,7 @@ export default {
           that.dialogFormVisible = false
           that.$message.success(res.message);
           this.page(this.currentPage,this.pageSize,'')
+          this.reflash()
         }else{
           that.$message.error(res.message);
         }
@@ -214,6 +215,14 @@ export default {
       }).catch(function(error){
         that.$message.error('删除失败！');
       });
+    },
+    reflash(){
+      let that = this;
+      navs_tree({
+        "pid":''
+      }).then(res => {
+        that.$parent.navs = res
+      })
     }
   }
 }

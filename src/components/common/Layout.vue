@@ -64,13 +64,18 @@
 
 <script>
 import { navs_tree } from "../../api/api.js"
-export default {
+export default{
   data() {
     return {
       search: '',
       // currentRoute: this.$router.history.current.fullPath,
       navs:[],
     }
+    },
+    computed: {
+      getNavs() {
+        return this.$store.navs;
+      }
     },
     created: function() {
       navs_tree({

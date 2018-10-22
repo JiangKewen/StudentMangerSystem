@@ -17,14 +17,19 @@ Vue.use(vueCanvas)
 
 import "./router/progress.js" // 路由拦截
 
+import vuex from 'vuex' //状态管理模式
+
+import store from './components/modules'
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
+Vue.use(vuex);
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
